@@ -12,8 +12,8 @@ world = World()
 
 # You may uncomment the smaller graphs for development and testing purposes.
 # map_file = "maps/test_line.txt"
-map_file = "maps/test_cross.txt"
-# map_file = "maps/test_loop.txt"
+# map_file = "maps/test_cross.txt"
+map_file = "maps/test_loop.txt"
 # map_file = "maps/test_loop_fork.txt"
 # map_file = "maps/main_maze.txt"
 
@@ -32,38 +32,54 @@ traversal_path = []
 
 directions = {'n': 's', 's': 'n', 'w': 'e', 'e': 'w'}
 
-s = Stack()
+def move_rooms(starting_room, visited=None, path=None)
+    # initializing
+    if visited is None:
+        visited = set()
+    if path is None:
+        path = []
 
-visited = set()
-
-# add starting room to stack
-s.push(player.current_room)
-
-while s.size() > 0:
-    # remove last room
-    room = s.pop()
-    
-    player.travel(room)
-
-    # if current room has not been visited
-    if player.current_room not in visited:
-        # add current room to visited
-        visited.add(player.current_room)
-        # add to path
-        traversal_path.append(directions[room])
-        # add to stack
-        s.append(directions[room])
-        
-    # iterate through available moves
     for option in player.current_room.get_exits():
-        # if can move in direction and that room has not been visited
-        if option and player.current_room.get_room_in_direction(option) not in visited:
-            # add to path
-            traversal_path.append(option)
-            # add to stack
-            s.append(option)
+        player.travel(option)
 
+        new_room = player.current_room
+
+        if new_room in visited:
+            player.travel([directions[option]])
+
+# s = Stack()
+
+# visited = set()
+
+# # add starting room to stack
+# # s.push(player.current_room)
+
+# while s.size() > 0:
+#     # remove last room
+#     room = s.pop()
     
+#     player.travel(room)
+
+#     # if current room has not been visited
+#     if player.current_room not in visited:
+#         # add current room to visited
+#         visited.add(player.current_room)
+#         # add to path
+#         traversal_path.append(directions[room])
+#         # add to stack
+#         s.push(directions[room])
+        
+#     # iterate through available moves
+#     for option in player.current_room.get_exits(option):
+#         # assign new room to direction chosen
+#         new_room = player.current_room.get_room_in_direction(option)
+
+#         # if can move in direction and that room has not been visited
+#         if new_room and new_room not in visited:
+#             # add to path
+#             traversal_path.append(new_room)
+#             # add to stack
+#             s.push(new_room)
 
 
 
