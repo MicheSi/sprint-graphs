@@ -37,6 +37,20 @@ s = Stack()
 visited = set()
 
 # add starting room to stack
+s.push(player.current_room)
+
+while s.size() > 0:
+    # remove last room
+    room = s.pop()
+    # move player to next room
+    player.travel(room)
+    # if current room has not been visited
+    if player.current_room not in visited:
+        # add current room to visited
+        visited.add(player.current_room)
+        traversal_path.append(room)
+
+
 # will need to loop through possible directions
 # if not room not visited, visit room and add to visited list
 # add room to path
