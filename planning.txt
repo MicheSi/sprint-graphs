@@ -1,0 +1,9 @@
+* DFS will have less back tracking
+* Will need to import a Stack class
+* Will need to keep track of visited rooms in a set()
+* Will need to keep track of the path taken so far with a path set()
+* Assign starting room as 1st vertex in stack
+* Keep track of available directions to move
+* Account for having no neighboring rooms on a specific side
+* As room is visited, add it to the path
+* return path once all rooms have been visited

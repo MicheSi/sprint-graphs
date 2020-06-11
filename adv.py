@@ -32,6 +32,16 @@ traversal_path = []
 
 directions = {'n': 's', 's': 'n', 'w': 'e', 'e': 'w'}
 
+s = Stack()
+
+visited = set()
+
+# add starting room to stack
+# will need to loop through possible directions
+# if not room not visited, visit room and add to visited list
+# add room to path
+# if room has been visited, return to previous room
+
 
 
 # TRAVERSAL TEST - DO NOT MODIFY
