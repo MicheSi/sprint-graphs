@@ -42,19 +42,28 @@ s.push(player.current_room)
 while s.size() > 0:
     # remove last room
     room = s.pop()
-    # move player to next room
+    
     player.travel(room)
+
     # if current room has not been visited
     if player.current_room not in visited:
         # add current room to visited
         visited.add(player.current_room)
-        traversal_path.append(room)
+        # add to path
+        traversal_path.append(directions[room])
+        # add to stack
+        s.append(directions[room])
+        
+    # iterate through available moves
+    for option in player.current_room.get_exits():
+        # if can move in direction and that room has not been visited
+        if option and player.current_room.get_room_in_direction(option) not in visited:
+            # add to path
+            traversal_path.append(option)
+            # add to stack
+            s.append(option)
 
-
-# will need to loop through possible directions
-# if not room not visited, visit room and add to visited list
-# add room to path
-# if room has been visited, return to previous room
+    
 
 
 
