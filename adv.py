@@ -63,43 +63,8 @@ def move_rooms(starting_room, visited=None, path=None):
         else:
             player.travel(directions[option])
     return path
-
+# set new traversal path
 traversal_path = move_rooms(player.current_room)
-
-# s = Stack()
-
-# visited = set()
-
-# # add starting room to stack
-# # s.push(player.current_room)
-
-# while s.size() > 0:
-#     # remove last room
-#     room = s.pop()
-    
-#     player.travel(room)
-
-#     # if current room has not been visited
-#     if player.current_room not in visited:
-#         # add current room to visited
-#         visited.add(player.current_room)
-#         # add to path
-#         traversal_path.append(directions[room])
-#         # add to stack
-#         s.push(directions[room])
-        
-#     # iterate through available moves
-#     for option in player.current_room.get_exits(option):
-#         # assign new room to direction chosen
-#         new_room = player.current_room.get_room_in_direction(option)
-
-#         # if can move in direction and that room has not been visited
-#         if new_room and new_room not in visited:
-#             # add to path
-#             traversal_path.append(new_room)
-#             # add to stack
-#             s.push(new_room)
-
 
 
 # TRAVERSAL TEST - DO NOT MODIFY
