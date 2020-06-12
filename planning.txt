@@ -1,0 +1,20 @@
+* DFS will have less back tracking
+* Will need to import a Stack class
+* Will need to keep track of visited rooms in a set()
+* Will need to keep track of the path taken so far with a path set()
+* Assign starting room as 1st vertex in stack
+* Keep track of available directions to move
+* Account for having no neighboring rooms on a specific side
+* As room is visited, add it to the path
+* If dead end, walk back to nearest room with unexplored path
+* return path once all rooms have been visited
+
+Player
+    travel - moves to next room if direction available
+
+Room
+    get_exits - shows available exits (directions) that a player can move
+
+    connect_rooms - links room in opposite direction
+
+    get_room_in_direction - gets room in specific direction
