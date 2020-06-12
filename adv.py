@@ -13,9 +13,9 @@ world = World()
 # You may uncomment the smaller graphs for development and testing purposes.
 # map_file = "maps/test_line.txt"
 # map_file = "maps/test_cross.txt"
-map_file = "maps/test_loop.txt"
+# map_file = "maps/test_loop.txt"
 # map_file = "maps/test_loop_fork.txt"
-# map_file = "maps/main_maze.txt"
+map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
 room_graph=literal_eval(open(map_file, "r").read())
@@ -38,20 +38,31 @@ def move_rooms(starting_room, visited=None, path=None):
         visited = set()
     if path is None:
         path = []
-
+    # add starting room to visited
     visited.add(starting_room)
-
+    # add starting room to current path
     path = path + [starting_room]
-
+    # loop through direction options from current room
     for option in player.current_room.get_exits():
+        # move player that direction
         player.travel(option)
-
+        # new room is the room player just moved to
         new_room = player.current_room
-
+        # if new room has not been visited, add it to visited
         if new_room not in visited:
-            new_path = move_rooms(new_room, visited, path)
-            if new_path:
-                return new_path
+            visited.add(new_room)
+            # add direction to path
+            path.append(option)
+            # recurse through function to add more rooms and directions to visited & path
+            path = path + move_rooms(new_room, visited)
+            # once no more new rooms in that direction, move back to starting room
+            player.travel(directions[option])
+            # add to path
+            path.append(directions[option])
+        # if new room has already been visited, move back to previous room    
+        else:
+            player.travel(directions[option])
+    return path
 
 traversal_path = move_rooms(player.current_room)
 
